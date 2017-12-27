@@ -1,0 +1,3 @@
+#!/bin/bash
+
+for i in /scratch/04022/macqueen/sickle_trim_all/uncombined_82_varieties/sickle_all3pr_CDBN_*.fastq; do  OUTPUT=$(echo ${i} | sed "s/sickle_trim_all\/uncombined_82_varieties\/sickle_all3pr/4_bwa_mem\/align/" | sed "s/\.fastq//");  bwa mem $HOME/Pvulgaris_G19833/assembly/Pvulgaris_G19833_mainGenome.fa ${i} > ${OUTPUT}.sam;  samtools view -bt $HOME/Pvulgaris_G19833/assembly/Pvulgaris_G19833_mainGenome.fa.fai ${OUTPUT}.sam > ${OUTPUT}.bam;  samtools sort ${OUTPUT}.bam ${OUTPUT}.sort;  rm ${OUTPUT}.sam;  rm ${OUTPUT}.bam;done
